@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'',include('Insta.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^logout/$', views.logout, {"next_page": '/'}), 
+    url(r'^profile/$', views.logout, {"next_page": '/'}), 
 
 
 ]
