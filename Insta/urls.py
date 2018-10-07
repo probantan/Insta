@@ -10,7 +10,10 @@ urlpatterns=[
     url(r'^$', views.add_profile, name='add'),
     url(r'^comment/(?P<pk>\d+)', views.comment, name='comment'),
     url(r'^others/(?P<pk>\d+)', views.others, name='others'),
-git add
+    url(r'^follow/(?P<operation>.+)/(?P<pk>\d+)', views.follow, name='follow'),
+    url(r'^like/(?P<operation>.+)/(?P<pk>\d+)', views.like, name='like'),
+    url(r'^all/', views.all, name='all'),
+
 ]
 
 if settings.DEBUG:

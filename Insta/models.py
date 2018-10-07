@@ -58,24 +58,7 @@ class Image(models.Model):
 
     def total_likes(self):
         return self.likes.count()
- 
-class Follow(models.Model):
-    follower = models.ManyToManyField(User)
-    current_user = models.ForeignKey(User, related_name='owner', null=True)
 
-    @classmethod
-    def follow(cls, current_user, new_follow):
-        friend, created = cls.objects.get_or_create(
-            current_user=current_user
-        )
-        friend.follower.add(new_follow)
-
-    @classmethod
-    def unfollow(cls, current_user, new_follow):
-        friend, created = cls.objects.get_or_create(
-            current_user=current_user
-        )
-        friend.follower.remove(new_follow)
 
 
 class Comment(models.Model):
@@ -93,3 +76,20 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+class Follow(models.Model):
+    follower = models.ManyToManyField(User)
+    current_user = models.ForeignKey(User, related_name='owner', null=True)
+
+    @classmethod
+    def follow(cls, current_user, new_follow):
+        friend, created = cls.objects.get_or_create(
+            current_user=current_user
+        )
+        friend.follower.add(new_follow)
+
+    @classmethod
+    def unfollow(cls, current_user, new_follow):
+        friend, created = cls.objects.get_or_create(
+            current_user=current_user
+        )
+        friend.follower.remove(new_follow)
