@@ -144,8 +144,10 @@ def add_profile(request):
 def like(request, operation, pk):
     # likes = request.POST.get()
     # print(likes)
-    # current_user = request.user
+    current_user = request.user
     post = post = get_object_or_404(Image, pk=pk)
+    post = Post.objects.get(pk=pk)
+
     if operation == 'like':
         post.likes = post.likes + 1
         post.save()

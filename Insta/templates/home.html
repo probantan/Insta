@@ -14,7 +14,7 @@
   </head>
   <body>
 
-  
+  {% for profile in profiles %}
    <div class="row">
     <div class="col- mx-auto p-5" style="background-color:#ffffff; border: 1px solid #e6e6e6;">
       <div class="profile p-4" style="white-space:nowrap">
@@ -25,6 +25,12 @@
       </div>
     </div>
   </div>
+
+{% endfor %}
+
+
+
+  
 
 
        <div class="row mt-3">
@@ -48,12 +54,14 @@
           </div>
         </div>
 
+
            <div class="icons mt-3">
           <a id="heart" class="post-likes" data-post-id="{{photo.id}}" style="color:inherit;" href="{% url 'like' operation='like' pk=photo.pk %}">
             <i id='like-{{photo.id}}' data-post-id='like-{{photo.id}}'   class="fa fa-heart fa-2x ml-3" aria-hidden="true" style="display: inline-block; font-size:23px"></i>
           </a>
          <a href="#" style="color:inherit;"><i class="fa fa-bookmark-o fa-2x float-right mr-4"></i></a>
         </div>
+        
           <a href="{% url 'comment' pk=photo.pk %}" style="color:inherit;"><i class="fa fa-comment-o fa-2x ml-4" style="font-size:23px"></i></a>
         <div class="likes">
           <p class="ml-4 mt-3"><strong class="like-count" data-likeId="{{photo.id}}">{{photo.likes}}</strong><strong> likes</strong></p>
@@ -87,8 +95,30 @@
             <p style="font-weight:bold;font-size:25px">{{user.first_name}} {{user.last_name}} </p>
           </a>
         </header>
+       <hr>
+        <p style="float:left; font-size:15px; font-weight:bolder; color:grey">Stories</p>
+        <p style="float:right; font-weight:bolder; font-size:15px"><a style="color:inherit" href="{% url 'all' %}">View All</a></p>
+        <div class="stories" style="overflow-y:auto; height:300px;margin-top:50px;padding:10px; border-bottom: 1px solid #ddd; width:100%">
+          <hr>
+        {% for profile in profiles %}
+          {% if profile.user != user.user %}
+          <div class="user_stories" style="margin-bottom:20px">
+            <img src="{{profile.profile_pic.url}}" alt="" style="height:50px;width:50px; border-radius:50%; float:left; margin-right:15px">
+            <a href="{% url 'others' pk=profile.pk %}"><p style="font-weight:bold;font-size:16px">{{profile.user}}<br></a><span style="font-size:12px;font-weight:normal; color:grey">{{profile.time_stamp|timesince|upper}} AGO</span></p>
+            <a href="#" class="btn btn-primary btn-sm">follow</a>
+          </div>
+          {% endif %}
+         {% endfor %}
+     </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+         {% endfor %}
 
-{% endfor %}
+{% endblock %}
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -96,4 +126,3 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 </html>
-{% endblock %}
