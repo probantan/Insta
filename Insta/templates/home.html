@@ -69,6 +69,16 @@
         <div class="make-comment mb-3">
           <a class="p-3" href="{% url 'comment' pk=photo.pk %}" style="color:#a6a6a6;">Add Comment</a>
           <a href="#" style="color:#a6a6a6;"><i class="fas fa-ellipsis-h fa-lg float-right mr-4"></i></a>
+
+          <!-- Modal  that refused to work the way i want.-->
+          <div class="modal fade" id="exampleModal{{photo.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Comment</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
 {% endfor %}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
