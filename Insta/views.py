@@ -139,6 +139,7 @@ def add_profile(request):
             "test": test,
             "form": form,
         }
+    return render(request, 'profiles/edit-profile.html', content)
 
 @login_required(login_url='/accounts/login/')
 def like(request, operation, pk):
@@ -146,7 +147,6 @@ def like(request, operation, pk):
     # print(likes)
     current_user = request.user
     post = post = get_object_or_404(Image, pk=pk)
-    post = Post.objects.get(pk=pk)
 
     if operation == 'like':
         post.likes = post.likes + 1
