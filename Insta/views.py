@@ -35,7 +35,7 @@ def others(request, pk):
 @login_required(login_url='/accounts/login/')
 def home(request):
     current_user = request.user
-    image_test = Image.objects.all()
+    image = Image.objects.all()
     profiles = Profile.objects.all()
     user = Profile.objects.get(user=current_user)
     print(user)
@@ -43,7 +43,7 @@ def home(request):
 
         "current_user": current_user,
         "user": user,
-        "image_test": image_test,
+        "image": image,
         "profiles": profiles
     }
     return render(request, 'home.html', content)
@@ -51,10 +51,8 @@ def home(request):
 
 @login_required(login_url='/accounts/login/')
 def all(request):
-    test = 'Working'
     all_pics = Image.objects.all()
     content = {
-        'test': test,
         'all_pics': all_pics,
     }
     return render(request, 'all.html', content)
@@ -84,7 +82,6 @@ def post(request):
 
 @login_required(login_url='/accounts/login/')
 def comment(request, pk):
-    test = 'Working'
     comment='comment.objects.all()'
     post = get_object_or_404(Image, pk=pk)
     current_user = request.user
@@ -100,7 +97,6 @@ def comment(request, pk):
         form = CommentForm()
 
     content = {
-        "test": test,
         "comment_form": form,
     }
     return render(request, 'comment.html', content)
@@ -122,7 +118,6 @@ def profile(request):
 @login_required(login_url='/accounts/login/')
 @transaction.atomic
 def add_profile(request):
-    test = 'Edit profile route working'
     current_user = request.user
     user_profile = Profile.objects.filter(user_id=current_user)
     if request.method == 'POST':
@@ -136,15 +131,12 @@ def add_profile(request):
         form = ProfileForm(instance=request.user)
 
         content = {
-            "test": test,
             "form": form,
         }
     return render(request, 'profiles/edit-profile.html', content)
 
 @login_required(login_url='/accounts/login/')
 def like(request, operation, pk):
-    # likes = request.POST.get()
-    # print(likes)
     current_user = request.user
     post = post = get_object_or_404(Image, pk=pk)
 
