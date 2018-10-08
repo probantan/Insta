@@ -28,16 +28,17 @@
 {% endfor %}
 
 
-       <div class="row mt-3">
+    <div class="row mt-3">
     <div class="col-1"></div>
     <div class="col-9 ml-md-auto">
       {% for photo in image %}
-      <div class="container ml-3 mt-3 mb-3 display" style="background-color:#ffffff; border: 1px solid #e6e6e6; border-radius: 5px;">
+      <div class="container 
+      " style="background-color:#ffffff; border: 1px solid #e6e6e6; border-radius: 5px;">
 
         <div class="row">
           <div class="col- display p-4" style="white-space:nowrap">
             {% if photo.profile.profile_pic %}
-            <img src="{{photo.profile.profile_pic.url}}" alt="" style="height:40px;width:40px; border-radius:50%; display:inline;"> {% else %}
+            <img src="{{photo.profile.profile_pic.url}}" alt="" style="height:50px;width:40px; border-radius:50%; display:inline;"> {% else %}
             <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" alt="" style="height:40px;width:40px; border-radius:50%; display:inline;"> {% endif %}
             <p class="ml-2" style="display:inline; white-space:nowrap;"><strong>{{photo.creator}}</strong></p>
           </div>
