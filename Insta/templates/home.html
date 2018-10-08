@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %} {{block.super}}
-
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,52 +14,39 @@
   </head>
   <body>
 
-  {% for profile in profiles %}
-   <div class="row">
-    <div class="col- mx-auto p-10" style="background-color:ghostwhite; border: 2px solid #e6e6e6;height:100px;">
-        <img src="{{profile.profile_pic.url}}" alt="" style="height:70px;width:70px; border-radius:50%; display:inline;">
-        <p class="ml-2" style="display:inline; white-space:nowrap; font-size:25px;">Hi<strong> {{current_user}}</strong>. Welcome to pro-Star-Chart</p>
-        <button class="btn btn-success ml-2"><a href="{% url 'post' %}" style="display:inline;
-         color:white; font-size:15px;position:relative;left:5px;">Post Image<i ></i></a></button>
-      </div>
-    </div>
-  </div>
+      
 
-{% endfor %}
-
-
-    <div class="row mt-3">
-    <div class="col-1"></div>
-    <div class="col-9 ml-md-auto">
       {% for photo in image %}
-      <div class="container 
-      " style="background-color:#ffffff; border: 1px solid #e6e6e6; border-radius: 5px;">
+      
+      <div class="container" 
+       style="background-color:#ffffff; border: 1px solid #e6e6e6; border-radius: 5px;">
 
         <div class="row">
-          <div class="col- display p-4" style="white-space:nowrap">
+          <div class="col- display p-4" style="white-space:nowrap" >
             {% if photo.profile.profile_pic %}
-            <img src="{{photo.profile.profile_pic.url}}" alt="" style="height:50px;width:40px; border-radius:50%; display:inline;"> {% else %}
-            <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" alt="" style="height:40px;width:40px; border-radius:50%; display:inline;"> {% endif %}
-            <p class="ml-2" style="display:inline; white-space:nowrap;"><strong>{{photo.creator}}</strong></p>
-          </div>
+            <img src="{{photo.profile.profile_pic.url}}" alt="" style="height:40px;width:40px; border-radius:50%; "> {% else %}
+            
+          <img src="{{photo.image.url}}"style="width:50px;"> 
+          {% endif %}
+            <p class="ml-2" style="display:inline; white-space:nowrap;font-size:18px;"><strong>{{photo.creator}}</strong></p>
+          {{photo.Image.url}}</div>
         </div>
 
         <div class="row">
           <div class="col- mx-auto">
-            <img src="{{photo.image.url}}" alt="" class="img-fluid">
+            <img style="width:400px;float:left; position:relative; right:360px;height:500px;bottom:2px;" src="{{photo.image.url}}" alt="" class="img-fluid">
           </div>
         </div>
 
            <div class="icons mt-3">
-          <a id="heart" class="post-likes" data-post-id="{{photo.id}}" style="color:inherit;" href="{% url 'like' operation='like' pk=photo.pk %}">
+          <a style="color:red;"id="heart" class="post-likes" data-post-id="{{photo.id}}" style="color:inherit;" href="{% url 'like' operation='like' pk=photo.pk %}">
             <i id='like-{{photo.id}}' data-post-id='like-{{photo.id}}'   class="fa fa-heart fa-2x ml-3" aria-hidden="true" style="display: inline-block; font-size:23px"></i>
           </a>
-         <a href="#" style="color:inherit;"><i class="fa fa-bookmark-o fa-2x float-right mr-4"></i></a>
         </div>
         
           <a href="{% url 'comment' pk=photo.pk %}" style="color:inherit;"><i class="fa fa-comment-o fa-2x ml-4" style="font-size:23px"></i></a>
         <div class="likes">
-          <p class="ml-4 mt-3"><strong class="like-count" data-likeId="{{photo.id}}">{{photo.likes}}</strong><strong> likes</strong></p>
+          <p class="ml-4 mt-3"><strong class="like-count>" data-likeId="{{photo.id}}">{{photo.likes}}</strong><strong> likes</strong></p>
           <p class="p-3 ml-2">{{photo.caption}}</p>
         </div>
          <div class="comments ml-4">
@@ -71,36 +58,18 @@
         <hr>
         <div class="make-comment mb-3">
           <a class="p-3" href="{% url 'comment' pk=photo.pk %}" style="color:#a6a6a6;">Add Comment</a>
-          <a href="#" style="color:#a6a6a6;"><i class="fas fa-ellipsis-h fa-lg float-right mr-4"></i></a>
 
-          <!-- Modal  that refused to work the way i want.-->
-          <div class="modal fade" id="exampleModal{{photo.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Comment</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    <div class="col-2">
-      <div class="container-fluid ml-5" style="position:fixed; width:320px">
-        <header style="margin-bottom:30px">
-          <img class="mb-1" src="{{user.profile_pic.url}}" alt="" style="height:50px;width:50px; border-radius:50%; float:left; margin-right:15px">
-          <a href="{% url 'profile' %}" style="color:#a6a6a6;">
-            <p style="font-weight:bold;font-size:25px">{{user.first_name}} {{user.last_name}} </p>
-          </a>
-        </header>
-       <hr>
-        <p style="float:left; font-size:15px; font-weight:bolder; color:grey">Stories</p>
-        <p style="float:right; font-weight:bolder; font-size:15px"><a style="color:inherit" href="{% url 'all' %}">View All</a></p>
+        
+        
+    <div class="panel-body">
+        <p style=" position:relative;float:right; font-size:15px; font-weight:bolder; color:grey;right:327px;top:20px;">Stories</p>
+        <p style=" position:relative;float:right; font-weight:bolder; font-size:15px;top:40px;"><a style="color:inherit" href="{% url 'all' %}">Watch All</a></p>
         <div class="stories" style="overflow-y:auto; height:300px;margin-top:50px;padding:10px; border-bottom: 1px solid #ddd; width:100%">
-          <hr>
         {% for profile in profiles %}
           {% if profile.user != user.user %}
           <div class="user_stories" style="margin-bottom:20px">
-            <img src="{{profile.profile_pic.url}}" alt="" style="height:50px;width:50px; border-radius:50%; float:left; margin-right:15px">
-            <a href="{% url 'others' pk=profile.pk %}"><p style="font-weight:bold;font-size:16px">{{profile.user}}<br></a><span style="font-size:12px;font-weight:normal; color:grey">{{profile.time_stamp|timesince|upper}} AGO</span></p>
-            <a href="#" class="btn btn-primary btn-sm">follow</a>
+            <img src="{{profile.profile_pic.url}}" alt="" style="height:50px;width:50px; border-radius:50%; float:right;position:relative;right:300px;bottom:10px; margin-right:15px">
+            <a href="{% url 'others' pk=profile.pk %}"><p style="font-weight:bold;font-size:16px;float:right;position:relative;right:110px;bottom:8px;">{{profile.user}}<br></a><span style="font-size:12px;font-weight:normal; color:grey;float:right;">{{profile.time_stamp|timesince|upper}} AGO</span></p>
           </div>
           {% endif %}
          {% endfor %}
@@ -108,14 +77,11 @@
       </div>
     </div>
   </div>
-</div>
-</div>
          {% endfor %}
 
 {% endblock %}
 
     <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

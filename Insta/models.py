@@ -42,7 +42,7 @@ class Tag(models.Model):
         self.save()
 
 class Image(models.Model):
-    Image=models.ImageField(upload_to='Images/', default=True)
+    image=models.ImageField(upload_to='Images/', default=True)
     caption = models.TextField(blank=True)
     likes = models.PositiveIntegerField(default=0)
     time = models.DateTimeField(auto_now_add=True)
@@ -65,7 +65,6 @@ class Comment(models.Model):
     text= models.CharField(max_length=200, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments')
-    # profile_pic = models.ForeignKey(Profile, blank=True)
     time_posted = models.DateTimeField(auto_now_add=True)
 
     class Meta:
