@@ -8,6 +8,26 @@ from django.db import transaction
 
 # Create your views here.
 
+
+@login_required(login_url='/accounts/login/')
+def search_result(request):
+    if 'query' in request.GET and request.GET['query']:
+        query = request.GET.get("query")
+        user = Profile.search_profiles(query)
+        images = Image.objects.all()
+        message = f"query"
+
+        content = {
+            "message": message,
+            "found": user,
+            "images": images,
+        }
+
+        return render(request, 'search.html', content)
+    else:
+        message = "You haven't searched for anyone"
+        return render(request, 'search.html', {"message": message})
+
 @login_required(login_url='/accounts/login/')
 def follow(request, operation, pk):
     """
@@ -133,7 +153,7 @@ def add_profile(request):
         content = {
             "form": form,
         }
-    return render(request, 'profiles/edit-profile.html', content)
+    return render(request, 'profiles/prof-edit.html', content)
 
 @login_required(login_url='/accounts/login/')
 def like(request, operation, pk):

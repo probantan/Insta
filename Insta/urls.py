@@ -13,6 +13,7 @@ urlpatterns=[
     url(r'^follow/(?P<operation>.+)/(?P<pk>\d+)', views.follow, name='follow'),
     url(r'^like/(?P<operation>.+)/(?P<pk>\d+)', views.like, name='like'),
     url(r'^all/', views.all, name='all'),
+    url(r'^search/', views.search_result, name='search'),
 
 ]
 

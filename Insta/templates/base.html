@@ -1,37 +1,34 @@
-{% load bootstrap3 %}
-    {% load static %}
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
-
-></script>
-    {% block content %}
-
+ {% load bootstrap3 %}
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="../../static/images/icon.png" />
+  {% if title %}
+  <title>Instagram</title>
+  {% else %}
+  <link rel="icon" href="../../static/images/icon.png" />
+  <title> Instagram</title>
+  {% endif %}
   {% block styles %}
-    {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   {% endblock %}
-
-
-
-  <script type="text/javascript">
-  function copyToClipboard(idd){
-    var copyText = document.getElementById(idd);
-      text=copyText.src;
-      var dummy = document.createElement("input");
-      document.body.appendChild(dummy);
-      dummy.setAttribute('value', text);
-      dummy.select();
-      document.execCommand("copy");
-      document.body.removeChild(dummy);
-      //alert("Copied the text: " + copyText.src);
-  }
-  </script>
-  <body>
-    {% include "navbar.html" %}
-    {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     {% bootstrap_javascript %}
-    {% endblock %}
+</head>
+<body>
+  {% include "navbar.html" %}
+  {% block content %} {%endblock%}
+  {% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %}
+  {% endblock %}
+  <footer>
+    ...
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+  {% block javascript %}{% endblock %}
 </body>
-  {% endblock %}
+</html>

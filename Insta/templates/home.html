@@ -12,34 +12,35 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <title>Instagram</title>
   </head>
-  <body>
+  <body style="background-color:grey;position:relative;height:200px;">
 
       
 
       {% for photo in image %}
-      
-      <div class="container" 
-       style="background-color:#ffffff; border: 1px solid #e6e6e6; border-radius: 5px;">
+
+      <div class="jumbotron" 
+
+       style="background-color:ghostwhite; position:relative;left:400px; width:50%">
+      <div style="position:relative;left:130px;top:-30px;">
 
         <div class="row">
           <div class="col- display p-4" style="white-space:nowrap" >
             {% if photo.profile.profile_pic %}
             <img src="{{photo.profile.profile_pic.url}}" alt="" style="height:40px;width:40px; border-radius:50%; "> {% else %}
             
-          <img src="{{photo.image.url}}"style="width:50px;"> 
           {% endif %}
             <p class="ml-2" style="display:inline; white-space:nowrap;font-size:18px;"><strong>{{photo.creator}}</strong></p>
-          {{photo.Image.url}}</div>
+          </div>
         </div>
 
         <div class="row">
           <div class="col- mx-auto">
-            <img style="width:400px;float:left; position:relative; right:360px;height:500px;bottom:2px;" src="{{photo.image.url}}" alt="" class="img-fluid">
+            <img style="width:400px;float:left; position:relative; right:170px;height:350px;bottom:2px;" src="{{photo.image.url}}" alt="" class="img-fluid">
           </div>
         </div>
 
            <div class="icons mt-3">
-          <a style="color:red;"id="heart" class="post-likes" data-post-id="{{photo.id}}" style="color:inherit;" href="{% url 'like' operation='like' pk=photo.pk %}">
+          <a style="color:red;"id="heart" class="post-likes" data-post-id="{{photo.id}}" href="{% url 'like' operation='like' pk=photo.pk %}">
             <i id='like-{{photo.id}}' data-post-id='like-{{photo.id}}'   class="fa fa-heart fa-2x ml-3" aria-hidden="true" style="display: inline-block; font-size:23px"></i>
           </a>
         </div>
@@ -55,24 +56,13 @@
           {% endfor %}
           <p style="color:#a6a6a6;">{{photo.time|timesince}}</p>
         </div>
-        <hr>
         <div class="make-comment mb-3">
-          <a class="p-3" href="{% url 'comment' pk=photo.pk %}" style="color:#a6a6a6;">Add Comment</a>
+          <a class="p-3" href="{% url 'comment' pk=photo.pk %}" style="color:grey;font-size:15px;">Add Comment</a>
 
         
         
-    <div class="panel-body">
-        <p style=" position:relative;float:right; font-size:15px; font-weight:bolder; color:grey;right:327px;top:20px;">Stories</p>
-        <p style=" position:relative;float:right; font-weight:bolder; font-size:15px;top:40px;"><a style="color:inherit" href="{% url 'all' %}">Watch All</a></p>
-        <div class="stories" style="overflow-y:auto; height:300px;margin-top:50px;padding:10px; border-bottom: 1px solid #ddd; width:100%">
-        {% for profile in profiles %}
-          {% if profile.user != user.user %}
-          <div class="user_stories" style="margin-bottom:20px">
-            <img src="{{profile.profile_pic.url}}" alt="" style="height:50px;width:50px; border-radius:50%; float:right;position:relative;right:300px;bottom:10px; margin-right:15px">
-            <a href="{% url 'others' pk=profile.pk %}"><p style="font-weight:bold;font-size:16px;float:right;position:relative;right:110px;bottom:8px;">{{profile.user}}<br></a><span style="font-size:12px;font-weight:normal; color:grey;float:right;">{{profile.time_stamp|timesince|upper}} AGO</span></p>
-          </div>
-          {% endif %}
-         {% endfor %}
+    
+    
      </div>
       </div>
     </div>
