@@ -18,7 +18,8 @@
 + [x] Photo feed displaying user photos along with those users follows.
 + [x] Image editing: Filter, rotate and add caption to images during upload
 + [x] search functionality for users.
-+ [x] Django admin dashboard for adding
++ [x] Django admin dashboard for adding & managing posts and user accounts
++ [x] SSL encryption using letsencrypt and certbot
 
 
 ## Getting started
@@ -73,6 +74,8 @@ python manage.py test
 * [Python3.6](https://www.python.org/)
 * [Django 1.11](https://www.djangoproject.com/)
 * [Heroku](https://heroku.com)
+
+
 
 
 
