@@ -73,7 +73,7 @@ python manage.py test
 
 * [Python3.6](https://www.python.org/)
 * [Django 1.11](https://www.djangoproject.com/)
-* [Heroku](https://heroku.com)
+
 
 
 
