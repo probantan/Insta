@@ -2,16 +2,15 @@
 from django.test import TestCase
 from .models import Profile,Image,Comment
 import datetime as dt
+
 # Create your tests here.
 class ImageTestCLass(TestCase):
-    '''
-    setup self instance of image
-    '''
+  
     def setUp(self):
-        self.post = Image(Image_name='Music',Image_caption='music is a southing sound that moves souls')
+        self.post = Image(Image_name='bla',Image_caption='blablablabla')
     
     ''' 
-    test instance of image
+    test instance of the image
     '''
     def test_instance(self):
         self.assertTrue(isinstance(self.post,Image))
@@ -45,13 +44,11 @@ class profileTestCLass(TestCase):
         self.assertTrue(len(bio)>0)
 
 class CommentTestCase(TestCase):
-    '''
-    setup
-    '''
+    '
     def setUp(self):
         self.comment = Comment(name='lovely')
     '''
-    test instance of comment
+    test instance of the comment
     '''
     def test_instance(self):
         self.assertTrue(isinstance(self.comment,Commment))
