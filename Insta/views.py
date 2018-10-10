@@ -25,7 +25,7 @@ def search (request):
         return render(request, 'search.html', collection)
     else:
         message = "No Username Searched"
-        return render(request, 'search.html', {"message": 
+        return render(request, 'search.html', {"message": message})
 
 
 @login_required(login_url='/accounts/login/')
