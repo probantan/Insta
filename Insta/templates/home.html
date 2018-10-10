@@ -52,7 +52,7 @@
         </div>
          <div class="comments ml-4">
           {% for comment in photo.comments.all %}
-          <p><strong>{{comment.author}}</strong> {{comment.text}}</p>
+          <p><strong>{{comment.author}}:</strong> {{comment.text}}</p>
           {% endfor %}
           <p style="color:#a6a6a6;">{{photo.time|timesince}}</p>
         </div>

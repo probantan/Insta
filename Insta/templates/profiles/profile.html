@@ -3,12 +3,12 @@
 {% block content %} 
 {{block.super}}<div class="container mt-2 ">
   <div class="row">
-    <div class="col- mx-auto p-5 mt-2" style="background-color:#ffffff; border: 1px solid #e6e6e6;">
+    <div class="col- mx-auto p-5 mt-2" style="background-color:ghosthite; border: 1px solid #e6e6e6;position:relative;left:10px;">
       {% for profile in profiles %}
       <div class="profile p-4" style="white-space:nowrap">
         <img src="{{profile.profile_pic.url}}" alt="" style="height:70px;width:70px; border-radius:50%; display:inline;">
         <p class="ml-2" style="display:inline; white-space:nowrap; font-size:25px;"><strong>{{profile.first_name}} {{profile.last_name}}</strong></p>
-        <button class="btn btn-primary ml-3" ><a href="{% url 'post' %}" style="display:inline; white-space:nowrap; color:#ffffff;">New Post<i class="fa fa-plus-square-o fa-2x ml-2 fa-lg ml-1 mt-1" aria-hidden="true"></i></a></button>
+        <button class="btn btn-success ml-3" ><a href="{% url 'post' %}" style="display:inline; white-space:nowrap; color:#ffffff;font-size">New Post<i class="fa fa-plus-square-o fa-2x ml-2 fa-lg ml-1 mt-1" aria-hidden="true"></i></a></button>
 
         <p class="text-center" style="font-size:20px"><span style="font-weight:bolder">3</span> Followers</span> <span style="margin-left:20px"> <span style="font-weight:bolder">5</span> Following</span>
         </p>
@@ -19,12 +19,16 @@
   </div>
 </div>
 <div class="container mt-5">
+<div class="well">
   <div class="row">
     {% for pic in images %}
     <div class="col-4 m-2">
-      <img style="width:330px;height:330px; padding:5px;" src="{{pic.image.url}}" alt="" class="img-fluid">
+      <img style="width:330px;height:330px; padding:5px;position:relative;left:130px;" src="{{pic.image.url}}" alt="" class="img-fluid">
     </div>
+
     {% endfor %}
   </div>
 </div>
+    </div>
+
 {% endblock %}

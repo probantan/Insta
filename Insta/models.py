@@ -43,10 +43,10 @@ class Tag(models.Model):
 
 class Image(models.Model):
     image=models.ImageField(upload_to='Images/', default=True)
-    caption = models.TextField(blank=True)
     likes = models.PositiveIntegerField(default=0)
-    time = models.DateTimeField(auto_now_add=True)
+    caption = models.TextField(blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
+    time = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, default=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE,default=True)
 
@@ -85,10 +85,3 @@ class Follow(models.Model):
             current_user=current_user
         )
         friend.follower.add(new_follow)
-
-    @classmethod
-    def unfollow(cls, current_user, new_follow):
-        friend, created = cls.objects.get_or_create(
-            current_user=current_user
-        )
-        friend.follower.remove(new_follow)

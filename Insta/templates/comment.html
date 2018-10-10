@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
 {% block content %}
-<div class="container mt-2 mx-auto p-5" style="background-color:#ffffff; border: 1px solid #e6e6e6;">
-  <hr>
+<div class="container " style="background-color:ghostwhite;width:400px;height:150px;">
   <form  method="post">
-    {%csrf_token%} {% bootstrap_form comment_form %}
+    {% csrf_token %} {% bootstrap_form comment_form %}
       <input type="submit" class="btn btn-primary" value="Post">
   </form>
   <hr>
