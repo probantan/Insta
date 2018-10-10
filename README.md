@@ -75,26 +75,8 @@ python manage.py test
 * [Django 1.11](https://www.djangoproject.com/)
 * [Heroku](https://heroku.com)
 
-## TODO 
-### if i get the time to continue working on this
-+ [ ] Image editing and deleting after upload
-+ [ ] Block feature
-+ [ ] Push notifications
-+ [ ] Private messaging
-+ [ ] User and Location tagging
-+ [ ] Text & drawing tools
-+ [ ] Double tap (i know its a just a time settings code if i get time i will add it)
-+ [ ] Add inbuilt commment app synced with userprofiles
-+ [ ] Ajax search functionality displaying users suggestion with keydown.
-+ [ ] Direct & Group messaging
-+ [ ] private profile
 
-## Contributing
 
-- Git clone [https://github.com/jakhax/insta-clonewars.git](https://github.com/jakhax/insta-clonewars.git) 
-- Make the changes.
-- Write your tests.
-- If everything is OK. push your changes and make a pull request.
 
-## License ([MIT License](http://choosealicense.com/licenses/mit/))
-This project is licensed under the MIT Open Source license, (c) [Jack ogina](https://github.com/jakhax)
+### License
+Copyright (c) {year} **{Morings School}**
