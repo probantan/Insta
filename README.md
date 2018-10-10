@@ -1,26 +1,22 @@
-Insta Clone Wars
+    Insta
 ===================
 ## Description
-[InstaCloneWars](https://github.com/jakhax/insta-clonewars.git) is a clone of the website of the popular photo app [instagram](https://instagram.com), where users can post nerdy pics, like , comment and follow each other.
+```Insta``` is a clone of instagram app (https://instagram.com), where users can post  pics, like , comment and follow each other.
 
 ------------------------------------------------------------------------
 
 ## User Requirements
 
 1. Sign in to the application to start using.
-2. Upload my pictures to the application.
+2. Upload  pictures to the application.
 3. See my profile with all my pictures.
-4. Follow other users and see their pictures on my timeline.
 5. Like a picture and leave a comment on it.
 
 ## Features
 
-+ [x] User authentication with email confirmation.
 + [x] public user profiles
-+ [x] following and follow feature features
 + [x] Photo feed displaying user photos along with those users follows.
 + [x] Image editing: Filter, rotate and add caption to images during upload
-+ [x] Commenting on images using disqus ):
 + [x] search functionality for users.
 + [x] Django admin dashboard for adding & managing posts and user accounts
 + [x] SSL encryption using letsencrypt and certbot
@@ -28,10 +24,8 @@ Insta Clone Wars
 
 ## Getting started
 
-### Requirements
-This project was created on a debian linux platform but should work on other unix based[not limited to] sytems.
-* Tested on Debian Linux
-* Python3
+
+
 
 ### Cloning the repository
 ```bash
