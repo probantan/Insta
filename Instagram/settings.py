@@ -56,7 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'gallary.urls'
+ROOT_URLCONF = 'Instagram.urls'
 
 TEMPLATES = [
     {
@@ -76,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'gallary.wsgi.application'
+WSGI_APPLICATION = 'Instagram.wsgi.application'
 
 
 # Database
