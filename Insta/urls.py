@@ -7,13 +7,12 @@ urlpatterns=[
     url('^$',views.home,name = 'home'),
     url(r'^profile/', views.profile, name='profile'),
     url(r'^post/', views.post, name='post'),
-    url(r'^$', views.add_profile, name='add'),
     url(r'^comment/(?P<pk>\d+)', views.comment, name='comment'),
     url(r'^rest/(?P<pk>\d+)', views.rest, name='rest'),
     url(r'^like/(?P<operation>.+)/(?P<pk>\d+)', views.like, name='like'),
     url(r'^all/', views.all, name='all'),
     url(r'^search/', views.search, name='search'),
-
+    url(r'^update/profile$', views.updateprofile, name='updateprofile'),
 ]
 
 if settings.DEBUG:

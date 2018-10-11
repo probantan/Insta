@@ -112,26 +112,18 @@ def profile(request):
 
 
 
-def add_profile(request):
-    current_user = request.user
-    user_profile = Profile.objects.filter(user_id=current_user)
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            user_profile = form.save()
-            user_profile.user = current_user
-            user_profile.save()
-            return redirect('home')
-    else:
-        form = ProfileForm(instance=request.user)
+@login_required(login_url='/accounts/login')
+def updateprofile(request):
+	if request.method == 'POST':
+		form = ProfileForm(request.POST,request.FILES, instance=request.user.profile)
+		if form.is_valid():
+			form.save()
+			return redirect('profile')
 
-        collection = {
-            "form": form,
-        }
-    return render(request, 'profiles/prof-edit.html', collection)
-
-
-
+	else:
+			form = ProfileForm()
+	return render(request, 'updateprofile.html',{"form":form })
+    
 @login_required(login_url='/accounts/login/')
 def like(request, operation, pk):
     post = post = get_object_or_404(Image, pk=pk)
