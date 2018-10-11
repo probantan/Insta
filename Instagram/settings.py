@@ -35,6 +35,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'Insta',
     'bootstrap3',
     'django.contrib.admin',
