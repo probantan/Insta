@@ -116,9 +116,8 @@ def profile(request):
     test = 'Profile route Working'
     current_user = request.user
     images = Image.objects.filter(creator=request.user)
-    profiles = Profile.objects.filter(user=request.user)
+    profiles = Profile.objects.filter(user=request.user.id)
     content = {
-        "test": test,
         "current_user": current_user,
         "images": images,
         "profiles": profiles
@@ -127,31 +126,33 @@ def profile(request):
 
 
 
-@login_required(login_url='/accounts/login')
-def updateprofile(request):
-	if request.method == 'POST':
-		form = ProfileForm(request.POST,request.FILES, instance=request.user.profile)
-		if form.is_valid():
-			form.save()
-			return redirect('profile')
-
-	else:
-			form = ProfileForm()
-	return render(request, 'updateprofile.html',{"form":form })
-# @login_required(login_url='/accounts/login/')
+# @login_required(login_url='/accounts/login')
 # def updateprofile(request):
-#     if request.method == 'POST':
-#         current_user= request.user
-#         form = ProfileForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             edit = form.save(commit=False)
-#             # edit.user = current_user
-#             edit.save()
-#             return redirect('edit_profile')
-#     else:
-#         form = ProfileForm()
-#     return render(request, 'updateprofile.html', {'form':form})
- 
+# 	if request.method == 'POST':
+# 		form = ProfileForm(request.POST,request.FILES, instance=request.user.profile)
+# 		if form.is_valid():
+# 			form.save()
+#             profile = user.profile
+
+# 			return redirect('profile')
+
+# 	else:
+# 			form = ProfileForm()
+# 	return render(request, 'updateprofile.html',{"form":form })
+@login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
+def updateprofile(request):
+    profile =Profile.objects.get(user=request.user)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            edit = form.save(commit=False)
+            edit.profile = request.user
+            edit.save()
+            return redirect('profile')
+    else:
+        form = ProfileForm()
+    return render(request, 'updateprofile.html', {'form':form})
 
 @login_required(login_url='/accounts/login/')
 def like(request, operation, pk):
