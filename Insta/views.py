@@ -60,7 +60,7 @@ def all(request):
 @login_required(login_url='/accounts/login/')
 def post(request):
     current_user = request.user
-    profile =get_object_or_404(Profile)
+    profile =get_object_or_404(Profile,id=1)
     post_form= PostForm()
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES )

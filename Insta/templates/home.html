@@ -12,9 +12,9 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <title>Instagram</title>
   </head>
-  <body style="background-color:grey;position:relative;height:200px;">
+  <body style="background-color:gainsboro;position:relative;height:200px;">
 
-      <button style="position:relative;top:-20px;float:right;left:-50px" class="btn btn-success ml-3" ><a href="{% url 'post' %}" style="display:inline; white-space:nowrap; color:#ffffff;font-size:20px;">New Post<i class="fa fa-plus-square-o fa-2x ml-2 fa-lg ml-1 mt-1" aria-hidden="true"></i></a></button>
+      <!-- <button style="position:relative;top:-20px;float:right;left:-50px" class="btn btn-success ml-3" ><a href="{% url 'post' %}" style="display:inline; white-space:nowrap; color:#ffffff;font-size:20px;">New Post<i class="fa fa-plus-square-o fa-2x ml-2 fa-lg ml-1 mt-1" aria-hidden="true"></i></a></button> -->
 
       {% for photo in image %}
 
@@ -58,9 +58,8 @@
           <p style="color:#a6a6a6;">{{photo.time|timesince}}</p>
         </div>
         <div class="make-comment mb-3">
-          <a class="p-3" href="{% url 'comment' pk=photo.pk %}" style="color:grey;font-size:15px;">Add Comment</a>
-          
-    
+          <a class="p-3" href="{% url 'comment' pk=photo.pk  %}" style="color:grey;font-size:15px;">Add Comment</a>
+
      </div>
       </div>
     </div>
