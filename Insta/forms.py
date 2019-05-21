@@ -8,13 +8,13 @@ class LoginForm(forms.Form):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user', 'post']
+        exclude = ['user', 'post' 'profile_pic']
 
     
 class PostForm(forms.ModelForm):
     class Meta:
         model = Image
-        exclude = ['creator', 'likes', 'time', 'tags', 'comment', 'profile']    
+        exclude = ['creator', 'profile','time', 'likes', 'tags']    
 
 class CommentForm(forms.ModelForm):
     class Meta:

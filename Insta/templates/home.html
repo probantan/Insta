@@ -14,7 +14,7 @@
   </head>
   <body style="background-color:grey;position:relative;height:200px;">
 
-      <button style="position:relative;top:-20px;float:right;left:-50px" class="btn btn-success ml-3" ><a href="{% url 'post' %}" style="display:inline; white-space:nowrap; color:#ffffff;font-size:20px;">New Post<i class="fa fa-plus-square-o fa-2x ml-2 fa-lg ml-1 mt-1" aria-hidden="true"></i></a></button>
+      <!-- <button style="position:relative;top:-20px;float:right;left:-50px" class="btn btn-success ml-3" ><a href="{% url 'post' %}" style="display:inline; white-space:nowrap; color:#ffffff;font-size:20px;">New Post<i class="fa fa-plus-square-o fa-2x ml-2 fa-lg ml-1 mt-1" aria-hidden="true"></i></a></button> -->
 
       {% for photo in image %}
 
@@ -46,7 +46,7 @@
           </a>
         </div>
         
-          <a href="{% url 'comment' pk=photo.pk %}" style="color:inherit;"><i class="fa fa-comment-o fa-2x ml-4" style="font-size:23px"></i></a>
+          <!-- <a href="{% url 'comment' pk=photo.pk %}" style="color:inherit;"><i class="fa fa-comment-o fa-2x ml-4" style="font-size:23px"></i></a> -->
         <div class="likes">
           <p class="ml-4 mt-3"><strong class="like-count>" data-likeId="{{photo.id}}">{{photo.likes}}</strong><strong> likes</strong></p>
           <p class="p-3 ml-2">{{photo.caption}}</p>
@@ -59,10 +59,7 @@
         </div>
         <div class="make-comment mb-3">
           <a class="p-3" href="{% url 'comment' pk=photo.pk %}" style="color:grey;font-size:15px;">Add Comment</a>
-
-        
-        
-    
+          
     
      </div>
       </div>

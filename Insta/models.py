@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-
 # Create your models here.
     
 class Profile(models.Model):
@@ -33,7 +32,7 @@ class Profile(models.Model):
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=30, unique=True, blank=True)
+    name = models.CharField(max_length=30, unique=True)
 
     class Meta:
         ordering = ['-name']
@@ -42,16 +41,16 @@ class Tag(models.Model):
         self.save()
 
 class Image(models.Model):
-    image=models.ImageField(upload_to='Images/', default=True)
+    image=models.ImageField(upload_to='Images/')
     likes = models.PositiveIntegerField(default=0)
     caption = models.TextField(blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
     time = models.DateTimeField(auto_now_add=True)
-    creator = models.ForeignKey(User, on_delete=models.CASCADE, default=True)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE,default=True)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
 
     class Meta:
-        ordering = ['-time']
+        ordering = ['-time'] 
 
     def save_images(self):
         self.save()
@@ -65,7 +64,7 @@ class Comment(models.Model):
     text= models.CharField(max_length=200, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments')
-    time_posted = models.DateTimeField(auto_now_add=True)
+    time_posted = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
         ordering = ['-time_posted']
@@ -75,4 +74,5 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
 
