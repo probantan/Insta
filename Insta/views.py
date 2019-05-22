@@ -3,8 +3,9 @@ from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm
 from .models import Image, Profile
-from .forms import ProfileForm, PostForm,CommentForm
+from .forms import  PostForm,CommentForm, ProfileUpdateForm,UserUpdateForm
 from django.db import transaction
+from django.contrib import messages
 
 # Create your views here.
 
@@ -60,7 +61,7 @@ def all(request):
 @login_required(login_url='/accounts/login/')
 def post(request):
     current_user = request.user
-    profile =get_object_or_404(Profile)
+    profile =get_object_or_404(Profile, id=request.user.id)
     post_form= PostForm()
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES )
@@ -113,16 +114,21 @@ def comment(request, pk):
     return render(request, 'comment.html', content)
 @login_required(login_url='/accounts/login/')
 def profile(request):
-    test = 'Profile route Working'
-    current_user = request.user
-    images = Image.objects.filter(creator=request.user)
-    profiles = Profile.objects.filter(user=request.user.id)
-    content = {
-        "current_user": current_user,
-        "images": images,
-        "profiles": profiles
-    }
-    return render(request, 'profiles/profile.html', content)
+    
+    return render(request, 'profiles/profile.html')
+
+# @login_required(login_url='/accounts/login/')
+# def profile(request):
+#     test = 'Profile route Working'
+#     current_user = request.user
+#     images = Image.objects.filter(creator=request.user)
+#     profiles = Profile.objects.filter(user=request.user.id)
+#     content = {
+#         "current_user": current_user,
+#         "images": images,
+#         "profiles": profiles
+#     }
+#     return render(request, 'profiles/profile.html', content)
 
 
 
@@ -139,20 +145,28 @@ def profile(request):
 # 	else:
 # 			form = ProfileForm()
 # 	return render(request, 'updateprofile.html',{"form":form })
-@login_required(login_url='/accounts/login/')
+# @login_required(login_url='/accounts/login/')
 @login_required(login_url='/accounts/login/')
 def updateprofile(request):
-    profile =Profile.objects.get(user=request.user)
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            edit = form.save(commit=False)
-            edit.profile = request.user
-            edit.save()
+        u_form =UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Yoour Account has been updated')
             return redirect('profile')
     else:
-        form = ProfileForm()
-    return render(request, 'updateprofile.html', {'form':form})
+        u_form =UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        
+
+    context={
+        'u_form':u_form,
+        'p_form':p_form
+
+     }
+    return render(request, 'updateprofile.html', context)
 
 @login_required(login_url='/accounts/login/')
 def like(request, operation, pk):

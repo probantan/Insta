@@ -1,17 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # Create your models here.
     
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True)
     bio = models.CharField(max_length=200)
-    profile_pic = models.ImageField(
-        upload_to='profile/')
-    time_stamp = models.DateTimeField(auto_now_add=True, null=True)
+    profile_pic = models.ImageField( default ='defaul.jpg',
+        upload_to='prof/', blank=True)
+    time_stamp = models.DateTimeField(auto_now_add=True, null =True)
 
     def __str__(self):
-        return self.first_name
-
+        return f'{self.user.username} Profile'
     def save_profile(self):
         self.save()
 
@@ -74,3 +75,14 @@ class Comment(models.Model):
         return self.text
 
 
+
+
+@receiver(post_save,sender=User)
+def create_profile(created, instance, sender,**kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+@receiver(post_save,sender=User)
+def save_profile( instance, sender,**kwargs):
+    instance.profile.save()

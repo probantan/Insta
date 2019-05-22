@@ -1,10 +1,54 @@
 {% extends 'base.html' %}
 
 {% block content %} 
-
+<!-- {% load crispy_forms_tags %} -->
 
 {{block.super}}
-<div class="container mt-2 ">
+<div class="container" style="text-align:center;">
+  <div class="container" style="text-align:center">
+  <div class="well" style="width:50%; left:270px;position:relative;">
+
+  <div class="media">
+    <img class="rounded-circle account-img"style="width:100px;left:85px; position: relative;" src="{{user.profile.profile_pic.url}}">
+    <div class="media-body">
+      <h2 class="account-heading" style="position:relative; right:50px;" >{{user.username}}</h2>
+      <p class="text-secondary"style="position:relative; right:30px;">{{user.email}}</p>
+      
+      <p class="text-center" style="font-size:20px"><span style="font-weight:bolder">0</span> Followers</span> <span style="margin-left:20px"> <span style="font-weight:bolder">0</span> Following</span> 
+       
+    </div>
+    <hr>
+                    <a href="{% url 'updateprofile' %}" class="btn btn-outline-dark mx-4 h-100 py-1">Edit Profile</a>
+
+  </div>
+</div>
+
+  <!-- FORM HERE -->
+  <!-- <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Profile Info</legend>
+        {{ u_form|crispy }}
+        {{ p_form|crispy }}
+    </fieldset>
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Update</button>
+    </div>
+</form> -->
+</div>
+
+
+
+ <!-- The above is both for the profile and update  i just 
+  seperated for better results...atleast a user should jus
+  t click on the link to be directed on the update page 
+ -->
+
+
+
+
+
+<!-- <div class="container mt-2 ">
   <div class="row">
     <div class="col- mx-auto p-5 mt-2" style="background-color:ghosthite; border: 1px solid #e6e6e6;position:relative;left:10px;">
       
@@ -14,28 +58,27 @@
         <p class="ml-2" style="display:inline; white-space:nowrap; font-size:25px;"><strong>{{profile.first_name}} {{profile.last_name}}</strong></p>
         <a href="{% url 'updateprofile' %}"><button class="btn profile-edit-btn">Edit Profile</button></a>
 
-        <!-- <button class="btn btn-primary ml-3" ><a href="{% url 'post' %}" style="display:inline; white-space:nowrap; color:#ffffff;">New Post<i class="fa fa-plus-square-o fa-2x ml-2 fa-lg ml-1 mt-1" aria-hidden="true"></i></a></button> -->
-        <p class="text-center" style="font-size:20px"><span style="font-weight:bolder">0</span> Followers</span> <span style="margin-left:20px"> <span style="font-weight:bolder">0</span> Following</span>
-        </p>
+         <button class="btn btn-primary ml-3" ><a href="{% url 'post' %}" style="display:inline; white-space:nowrap; color:#ffffff;">New Post<i class="fa fa-plus-square-o fa-2x ml-2 fa-lg ml-1 mt-1" aria-hidden="true"></i></a></button> -->
+        <!-- </p> -->
         
-        <hr>
+        <!-- <hr>
         <p> {{ profile.bio}}</p>
           {% endfor %}
       </div>
     </div>
   </div>
-</div>
-<div class="container mt-5">
+</div> -->
+<!-- <div class="container mt-5">
 <div class="well">
-  <div class="row">
-    {% for pic in images %}
+  <div class="row"> -->
+    <!-- {% for pic in images %}
     <div class="col-4 m-2">
       <img style="width:330px;height:330px; padding:5px;position:relative;left:130px;" src="{{pic.image.url}}" alt="" class="img-fluid">
-    </div>
+    </div> -->
 
-    {% endfor %}
+    <!-- {% endfor %} -->
   </div>
-</div>
-    </div>
+<!-- </div> -->
+    <!-- </div>  -->
 
 {% endblock %}

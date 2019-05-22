@@ -36,6 +36,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 INSTALLED_APPS = [
     'Insta',
+    'crispy_forms',
     'bootstrap3',
     'django.contrib.admin',
     'django.contrib.auth',
